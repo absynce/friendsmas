@@ -119,7 +119,7 @@ viewHeading model =
         , Font.center
         , width fill
         ]
-        (text "Friendsmas")
+        (text "Friendsmas 2018")
 
 
 viewContent model =
@@ -130,7 +130,13 @@ viewContent model =
             [ text "Thanks, for being a friend!"
             ]
         , Element.paragraph []
-            [ text "In addition to the physical thrift finds, you are treated to the following Evansville area music found online:"
+            [ text "In addition to the physical thrift finds, you are treated to the following Evansville area music found online."
+            ]
+        , Element.paragraph []
+            [ text "Your friend,"
+            ]
+        , Element.paragraph []
+            [ text "Jared"
             ]
         , viewMusic model
         ]
@@ -142,6 +148,15 @@ viewMusic model =
         , width fill
         ]
         [ el [ Region.heading 3 ] <|
+            text "Andrea Wirth and the Dirty Lil' Fun Havers"
+        , andreaWirthAndDirtyLilFunHavers
+        , el [ Region.heading 3 ] <|
+            text "Big Ninja Delight"
+        , bigNinjaDelight
+        , el [ Region.heading 3 ] <|
+            text "Calabash"
+        , calabash
+        , el [ Region.heading 3 ] <|
             text "Dang Heathens"
         , dangHeathens
         , el [ Region.heading 3 ] <|
@@ -153,6 +168,44 @@ viewMusic model =
 viewError : String -> Html Msg
 viewError errorMessage =
     Html.text <| "Error: " ++ errorMessage
+
+
+andreaWirthAndDirtyLilFunHavers =
+    html <|
+        Html.iframe
+            [ attribute "allow" "autoplay"
+            , attribute "frameborder" "0"
+            , attribute "height" "400"
+            , Html.Attributes.src "https://www.iheart.com/artist/andrea-wirth-the-dirty-lil-30077778/?embed=true"
+            , attribute "width" "100%"
+            ]
+            []
+
+
+bigNinjaDelight =
+    html <|
+        Html.iframe
+            [ attribute "allow" "autoplay"
+            , attribute "frameborder" "no"
+            , attribute "height" "450"
+            , attribute "scrolling" "no"
+            , Html.Attributes.src "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/488101206&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            , attribute "width" "100%"
+            ]
+            []
+
+
+calabash =
+    html <|
+        Html.iframe
+            [ attribute "allow" "autoplay"
+            , attribute "frameborder" "no"
+            , attribute "height" "450"
+            , attribute "scrolling" "no"
+            , Html.Attributes.src "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/116034337&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            , attribute "width" "100%"
+            ]
+            []
 
 
 cicada =
