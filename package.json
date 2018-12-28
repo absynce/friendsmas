@@ -1,0 +1,26 @@
+{
+  "name": "friendsmas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/Main.elm",
+  "scripts": {
+    "build": "elm make src/Main.elm --output=elm.js --debug",
+    "dev": "npm-run-all --parallel watch start",
+    "start": "elm reactor --port=8082",
+    "test": "elm-test",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:elm": "brunch watch",
+    "watch:elm-test": "elm-test --watch"
+  },
+  "author": "Jared M. Smith <absynce@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "auto-reload-brunch": "^2",
+    "brunch": "^2.10.17",
+    "chokidar-cli": "^1.2.1",
+    "elm": "^0.19.0-bugfix2",
+    "elm-brunch": "^0.12.0",
+    "elm-test": "^0.19.0-beta11",
+    "npm-run-all": "^4.1.5"
+  }
+}
