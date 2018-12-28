@@ -1,7 +1,7 @@
 module Main exposing (main)
 
 import Browser
-import Element exposing (Element, alignRight, centerY, el, fill, padding, rgb255, row, spacing, text, width)
+import Element exposing (Element, alignRight, centerX, el, fill, padding, rgb255, row, spacing, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
@@ -98,8 +98,10 @@ viewPage model =
 
 
 viewPageSuccess model =
-    Element.layout [] <|
-        Element.row []
+    Element.layout [ Element.explain Debug.todo ] <|
+        Element.row
+            [ width fill
+            ]
             [ viewHeading model
             ]
 
@@ -107,6 +109,8 @@ viewPageSuccess model =
 viewHeading model =
     Element.el
         [ Region.heading 1
+        , Font.center
+        , width fill
         ]
         (text "Friendsmas")
 
