@@ -60,19 +60,6 @@ init flags =
     )
 
 
-decodeUsers : Decode.Decoder (List User)
-decodeUsers =
-    Decode.list decodeUser
-
-
-decodeUser : Decode.Decoder User
-decodeUser =
-    Decode.map3 User
-        (field "id" Decode.int)
-        (field "first_name" Decode.string)
-        (field "last_name" Decode.string)
-
-
 
 -- View
 
@@ -100,13 +87,21 @@ viewPage model =
 
 viewPageSuccess model =
     Element.layout
-        [ Element.explain Debug.todo
+        [ Background.color (rgb255 76 76 71)
+        , Font.color (rgba 0 0 0 0.9)
+        , Font.size (scaled 1)
+        , Font.family
+            [ Font.typeface "Muli"
+            , Font.sansSerif
+            ]
         , width fill
         ]
     <|
         Element.column
-            [ width (fill |> maximum 1024)
-            , centerX
+            [ centerX
+
+            -- , spacing 30
+            , width (fill |> maximum 1024)
             ]
             [ viewHeading model
             , viewContent model
@@ -116,7 +111,10 @@ viewPageSuccess model =
 viewHeading model =
     Element.el
         [ Region.heading 1
+        , Background.color (rgb255 193 73 83)
         , Font.center
+        , Font.size (scaled 4)
+        , padding 30
         , width fill
         ]
         (text "Friendsmas 2018")
@@ -124,7 +122,23 @@ viewHeading model =
 
 viewContent model =
     Element.column
-        [ Element.explain Debug.todo
+        [ Background.color (rgb255 229 220 197)
+        , padding 30
+        , spacing 30
+        , width fill
+        ]
+        [ viewIntro
+        , viewMusic model
+        ]
+
+
+viewIntro =
+    textColumn
+        [ Background.color (rgba 1 1 1 0.9)
+        , Border.rounded 5
+        , padding 30
+        , spacing 30
+        , width fill
         ]
         [ Element.paragraph []
             [ text "Thanks, for being a friend!"
@@ -135,37 +149,48 @@ viewContent model =
         , Element.paragraph []
             [ text "Your friend,"
             ]
-        , Element.paragraph []
-            [ text "Jared"
+        , Element.paragraph
+            [ Font.family
+                [ Font.typeface "Charm"
+                ]
             ]
-        , viewMusic model
+            [ text "Jared M. Smith"
+            ]
         ]
 
 
 viewMusic model =
     Element.column
-        [ Element.explain Debug.todo
+        [ spacing 30
         , width fill
         ]
-        [ el [ Region.heading 3 ] <|
+        [ musicGroupTitle <|
             text "Andrea Wirth and the Dirty Lil' Fun Havers"
         , andreaWirthAndDirtyLilFunHavers
-        , el [ Region.heading 3 ] <|
+        , musicGroupTitle <|
             text "Big Ninja Delight"
         , bigNinjaDelight
-        , el [ Region.heading 3 ] <|
+        , musicGroupTitle <|
             text "Calabash"
         , calabash
-        , el [ Region.heading 3 ] <|
+        , musicGroupTitle <|
             text "Dang Heathens"
         , dangHeathens
-        , el [ Region.heading 3 ] <|
+        , musicGroupTitle <|
             text "The Queen Exchange"
         , queenExchange
-        , el [ Region.heading 3 ] <|
+        , musicGroupTitle <|
             text "Suspekt"
         , cicada
         ]
+
+
+musicGroupTitle title =
+    paragraph
+        [ Region.heading 3
+        , Font.size (scaled 3)
+        ]
+        [ title ]
 
 
 viewError : String -> Html Msg
@@ -174,7 +199,7 @@ viewError errorMessage =
 
 
 andreaWirthAndDirtyLilFunHavers =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "allow" "autoplay"
             , attribute "frameborder" "0"
@@ -186,7 +211,7 @@ andreaWirthAndDirtyLilFunHavers =
 
 
 bigNinjaDelight =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "allow" "autoplay"
             , attribute "frameborder" "no"
@@ -199,7 +224,7 @@ bigNinjaDelight =
 
 
 calabash =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "allow" "autoplay"
             , attribute "frameborder" "no"
@@ -212,7 +237,7 @@ calabash =
 
 
 cicada =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "allow" "autoplay"
             , attribute "frameborder" "no"
@@ -225,7 +250,7 @@ cicada =
 
 
 dangHeathens =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "frameborder" "no"
             , attribute "height" "265"
@@ -238,7 +263,7 @@ dangHeathens =
 
 
 queenExchange =
-    html <|
+    embedFull <|
         Html.iframe
             [ attribute "allow" "autoplay"
             , attribute "frameborder" "no"
@@ -248,6 +273,18 @@ queenExchange =
             , attribute "width" "100%"
             ]
             []
+
+
+scaled scalar =
+    round <| modular 16 1.25 scalar
+
+
+embedFull embeddedHtml =
+    el
+        [ width fill
+        ]
+    <|
+        html embeddedHtml
 
 
 
