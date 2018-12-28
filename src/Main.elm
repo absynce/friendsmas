@@ -160,6 +160,9 @@ viewMusic model =
             text "Dang Heathens"
         , dangHeathens
         , el [ Region.heading 3 ] <|
+            text "The Queen Exchange"
+        , queenExchange
+        , el [ Region.heading 3 ] <|
             text "Suspekt"
         , cicada
         ]
@@ -229,6 +232,19 @@ dangHeathens =
             , attribute "scrolling" "no"
             , Html.Attributes.src "https://www.reverbnation.com/widget_code/html_widget/artist_2445122?widget_id=55&pwc[included_songs]=1&context_type=page_object&pwc[size]=small"
             , attribute "style" "width:0px;min-width:100%;max-width:100%;"
+            , attribute "width" "100%"
+            ]
+            []
+
+
+queenExchange =
+    html <|
+        Html.iframe
+            [ attribute "allow" "autoplay"
+            , attribute "frameborder" "no"
+            , attribute "height" "450"
+            , attribute "scrolling" "no"
+            , Html.Attributes.src "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/9469341&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
             , attribute "width" "100%"
             ]
             []
