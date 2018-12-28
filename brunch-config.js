@@ -12,8 +12,8 @@ exports.config = {
       mainModules: ["src/Main.elm"],
       elmMake: "elm make",
       outputFolder: "public",
-      outputFile: "elm.js",
-      makeParameters: ["--debug"]
+      outputFile: "elm.js"
+      // makeParameters: ["--debug"]
     }
   }
 };
